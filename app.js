@@ -1,17 +1,16 @@
-const profileDataArgs = process.argv.slice(2, process.argv.lenght);
+const fs = require('fs');
+
+//calls upon the src page-template.js file for the generate page function
+const generatePage = require("./src/page-template.js");
+
+const profileDataArgs = process.argv.slice(2);
+
+const [name, github] = profileDataArgs;
 
 
-const printProfileData = profileDataArr => {
-    // This...
-    for (let i = 0; i < profileDataArr.length; i += 1) {
-      console.log(profileDataArr[i]);
-    }
-    
-    //To show the differences and similarities of forEach loop and for loop
-    console.log('================');
-  
-    // Is the same as this...
-    profileDataArr.forEach(profileItem => console.log(profileItem));//used arrow function to make the code cleaner and more concise as there is only one action
-  };
 
-printProfileData(profileDataArgs);
+fs.writeFile('./index.html', generatePage(name, github), err => {
+  if (err) throw new Error(err);
+
+  console.log('Portfolio complete! Check out index.html to see the output!');
+});
