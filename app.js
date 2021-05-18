@@ -26,17 +26,33 @@ inquirer
         {
           type: 'input',
           name: 'name',
-          message: 'What is your name?'
+          message: 'What is your name (Required)?',
+          validate: nameInput => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log('Please enter your name!');
+              return false;
+            }
+          }
         },
         {
             type: 'input',
             name:'github',
-            message: 'Enter your GitHub Username'
+            message: 'Enter your GitHub Username',
+            validate: githubInput => {
+                if (githubInput) {
+                  return true;
+                } else {
+                  console.log('Please enter your GitHUb username!');
+                  return false;
+                }
+              }
         },
         {
             type: 'input',
             name: 'about',
-            message: 'Provide some information about yourself:'
+            message: 'Provide some information about yourself:',
           },
       ]);
 
@@ -61,7 +77,15 @@ const promptProject = portfolioData =>{
         {
             type: 'input',
             name: 'name',
-            message: 'What is the name of your project?'
+            message: 'What is the name of your project? (Required)',
+            validate: projectnameInput => {
+                if (projectnameInput) {
+                  return true;
+                } else {
+                  console.log("Please enter your Project's name!");
+                  return false;
+                }
+              }
           }, 
           {
             type: 'input',
@@ -78,6 +102,14 @@ const promptProject = portfolioData =>{
             type: 'input',
             name: 'link',
             message: 'Enter the GitHUb link to your project. (Required)'
+            validate: githubLinkInput => {
+                if (githubLinkInput) {
+                  return true;
+                } else {
+                  console.log('Please enter your GitHub for the project.');
+                  return false;
+                }
+              }
           }, 
           {
             type: 'confirm',
